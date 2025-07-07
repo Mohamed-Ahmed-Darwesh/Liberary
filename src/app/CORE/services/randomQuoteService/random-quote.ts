@@ -9,8 +9,6 @@ export class RandomQuote {
   private readonly httpClient = inject(HttpClient)
   
   RandomQuote():Observable<any>{
-  return this.httpClient.get('https://stoic.tekloon.net/stoic-quote').pipe(
-    shareReplay()
-  )
+  return this.httpClient.get('https://stoic.tekloon.net/stoic-quote')
   }
 }
