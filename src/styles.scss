@@ -1,1 +1,22 @@
+@import "tailwindcss";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+    font-family: 'Quintessential';
+    src: url('/fonts/Quintessential/quintessential-regular-webfont.woff2') format('woff2') ;
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Great_vibes';
+    src: url('/fonts/Great_vibes/GreatVibes-Regular.woff2') format('woff2') ;
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+.text-main{
+    color: #967733;
+}
