@@ -28,41 +28,45 @@ export class HomePage implements AfterViewInit {
     });
     
     this.randomQuote()
+    
     if(isPlatformBrowser(this.platform_id)){
-      this.animateFadeIn()
+      this.animateFadeInsec1()
     }
   }
 
 
-  animateFadeIn(): void {
-    this.animateFromRight();
-    this.animateFromLeft();
+  animateFadeInsec1(): void {
+    this.animateFromRightsec1();
+    this.animateFromLeftsec1();
   }
   
-  private animateFromRight(): void {
+  private animateFromRightsec1(): void {
     const animateList = this.animatedR();
-
-      const elements = animateList.map(ref => ref.nativeElement);
+    const isMobile = window.innerWidth < 640
+    const xAxis =  isMobile ? -150 : -200
+    const stagger = isMobile ? 1:1
+    const dur = isMobile ? 1: 2
+    const elements = animateList.map(ref => ref.nativeElement);
   
       gsap.set(elements, {
-        x: -300,
+        x: xAxis,
         opacity: 0,
       });
       gsap.to(elements, {
         x: 0,
         opacity: 1,
-        duration: 2,
+        duration: dur,
         ease: "power1.out",
-        stagger: 0.2,
+        stagger: stagger,
       });
   }
   
-  private animateFromLeft(): void {
+  private animateFromLeftsec1(): void {
     const imgEl = this.animatedL()?.nativeElement;
     if (imgEl) {
-      // Set initial state
-      gsap.set(imgEl, {
-        x: 300,
+      // from initial state
+      gsap.from(imgEl, {
+        x: 100,
         opacity: 0,
       });
 
@@ -73,6 +77,9 @@ export class HomePage implements AfterViewInit {
         ease: "power1.out",
       });
     }
+  }
+  private velocityImgs():void{
+
   }
 
 
