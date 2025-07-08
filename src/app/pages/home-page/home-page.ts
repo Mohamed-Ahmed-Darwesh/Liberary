@@ -5,6 +5,11 @@ import { FlowbiteService } from '../../CORE/services/flow-bite';
 import { initFlowbite } from 'flowbite';
 import gsap from 'gsap';
 
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
+
+gsap.registerPlugin(ScrollTrigger,ScrollSmoother);
+
 
 @Component({
   selector: 'app-home-page',
@@ -19,6 +24,9 @@ export class HomePage implements AfterViewInit {
 
   animatedR = viewChildren<ElementRef>('animateR')
   animatedL = viewChild<ElementRef>('animateL')
+  wrapper = viewChild<ElementRef>('wrapper')
+  imgs = viewChild<ElementRef>('images')
+
 
   QuoteData:WritableSignal<any> = signal({})
 
@@ -31,6 +39,7 @@ export class HomePage implements AfterViewInit {
     
     if(isPlatformBrowser(this.platform_id)){
       this.animateFadeInsec1()
+      this.velocityImgs()
     }
   }
 
@@ -44,7 +53,7 @@ export class HomePage implements AfterViewInit {
     const animateList = this.animatedR();
     const isMobile = window.innerWidth < 640
     const xAxis =  isMobile ? -150 : -200
-    const stagger = isMobile ? 1:1
+    const stagger = isMobile ? .4:.2
     const dur = isMobile ? 1: 2
     const elements = animateList.map(ref => ref.nativeElement);
   
@@ -66,7 +75,7 @@ export class HomePage implements AfterViewInit {
     if (imgEl) {
       // from initial state
       gsap.from(imgEl, {
-        x: 100,
+        x: 200,
         opacity: 0,
       });
 
@@ -78,7 +87,23 @@ export class HomePage implements AfterViewInit {
       });
     }
   }
+
+
   private velocityImgs():void{
+    const WrapperNativ = this.wrapper()?.nativeElement
+    const ImgsNativ = this.imgs()?.nativeElement
+    let skewSetter = gsap.quickTo(ImgsNativ, "skewY"), // fast
+	  clamp = gsap.utils.clamp(-20, 20); // don't let the skew go beyond 20 degrees.
+
+    ScrollSmoother.create({
+      wrapper: WrapperNativ,
+      content: ImgsNativ,
+      smooth: 2,
+      speed: 3,
+      effects: true,
+      onUpdate: self => skewSetter(clamp(self.getVelocity() / -50)),
+      onStop: () => skewSetter(0)
+    });
 
   }
 
