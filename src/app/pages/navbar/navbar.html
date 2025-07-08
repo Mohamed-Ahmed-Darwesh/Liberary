@@ -1,52 +1,54 @@
-<nav class="border backdrop-blur-xs  bg-grad w-[90%] md:w-[85%] lg:w-[80%] md:px-4 lg:px-8 rounded-[2rem] mt-2 fixed  shadow-lg z-50 transition-all duration-300 hover:shadow-xl">
-    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <!-- Logo -->
-        <a class="flex items-center space-x-3 rtl:space-x-reverse logoTran  transition-all duration-400" href="#">
-            <div class="w-10 h-10  from-amber-600 to-amber-800 bookI transition-all  rounded-full flex items-center justify-center ">
-                <i class="fas fa-book-open  transition-colors text-lg "></i>
+<div #navBar class=" w-full">
+    <div   class="border backdrop-blur-xs bg-grad  md:px-4 lg:px-8 w-full rounded-[2rem] mt-3 fixed  shadow-lg z-50 transition-all duration-300 hover:shadow-xl">
+        <div  class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <!-- Logo -->
+            <a class="flex items-center space-x-3 rtl:space-x-reverse logoTran  transition-all duration-400" href="#">
+                <div class="w-10 h-10  from-amber-600 to-amber-800 bookI transition-all  rounded-full flex items-center justify-center ">
+                    <i class="fas fa-book-open  transition-colors text-lg "></i>
+                </div>
+                <span class="self-center  text-xl md:text-2xl font-semibold whitespace-nowrap title uppercase text-main ">library</span>
+            </a>
+            
+            <!-- Mobile Menu Button -->
+            <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden  focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400  dark:focus:ring-gray-600 transition-all duration-300" aria-controls="navbar-default" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+            
+            <!-- Navigation Menu -->
+            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+                <ul class="font-medium flex flex-col p-4 md:p-0 mt-4  rounded-lg   md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0  ">
+                    <li class="nav-item">
+                        <a href="#" class="block py-2 px-3 text-white  from-amber-600 to-amber-700 rounded-lg  md:text-gray-700 md:p-0 md:hover:text-amber-600 dark:text-white md:dark:text-gray-300 md:dark:hover:text-amber-400 transition-all duration-300 hover:scale-105" aria-current="page">
+                            <i class="fas fa-home mr-2"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="block py-2 px-3 text-gray-900 rounded-lg   md:hover:text-amber-600 md:p-0 dark:text-white md:dark:hover:text-amber-400  dark:hover:text-white  transition-all duration-300 hover:scale-105">
+                            <i class="fas fa-info-circle mr-2"></i>About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="block py-2 px-3 text-gray-900 rounded-lg   md:hover:text-amber-600 md:p-0 dark:text-white md:dark:hover:text-amber-400  dark:hover:text-white  transition-all duration-300 hover:scale-105">
+                            <i class="fas fa-cogs mr-2"></i>Services
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="block py-2 px-3 text-gray-900 rounded-lg   md:hover:text-amber-600 md:p-0 dark:text-white md:dark:hover:text-amber-400  dark:hover:text-white  transition-all duration-300 hover:scale-105">
+                            <i class="fas fa-tags mr-2"></i>Pricing
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="block py-2 px-3 text-gray-900 rounded-lg   md:hover:text-amber-600 md:p-0 dark:text-white md:dark:hover:text-amber-400  dark:hover:text-white  transition-all duration-300 hover:scale-105">
+                            <i class="fas fa-envelope mr-2"></i>Contact
+                        </a>
+                    </li>
+    
+                </ul>
             </div>
-            <span class="self-center  text-xl md:text-2xl font-semibold whitespace-nowrap title uppercase text-main ">library</span>
-        </a>
-        
-        <!-- Mobile Menu Button -->
-        <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden  focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400  dark:focus:ring-gray-600 transition-all duration-300" aria-controls="navbar-default" aria-expanded="false">
-            <span class="sr-only">Open main menu</span>
-            <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-            </svg>
-        </button>
-        
-        <!-- Navigation Menu -->
-        <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-            <ul class="font-medium flex flex-col p-4 md:p-0 mt-4  rounded-lg   md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0  ">
-                <li class="nav-item">
-                    <a href="#" class="block py-2 px-3 text-white  from-amber-600 to-amber-700 rounded-lg  md:text-gray-700 md:p-0 md:hover:text-amber-600 dark:text-white md:dark:text-gray-300 md:dark:hover:text-amber-400 transition-all duration-300 hover:scale-105" aria-current="page">
-                        <i class="fas fa-home mr-2"></i>Home
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="block py-2 px-3 text-gray-900 rounded-lg   md:hover:text-amber-600 md:p-0 dark:text-white md:dark:hover:text-amber-400  dark:hover:text-white  transition-all duration-300 hover:scale-105">
-                        <i class="fas fa-info-circle mr-2"></i>About
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="block py-2 px-3 text-gray-900 rounded-lg   md:hover:text-amber-600 md:p-0 dark:text-white md:dark:hover:text-amber-400  dark:hover:text-white  transition-all duration-300 hover:scale-105">
-                        <i class="fas fa-cogs mr-2"></i>Services
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="block py-2 px-3 text-gray-900 rounded-lg   md:hover:text-amber-600 md:p-0 dark:text-white md:dark:hover:text-amber-400  dark:hover:text-white  transition-all duration-300 hover:scale-105">
-                        <i class="fas fa-tags mr-2"></i>Pricing
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="block py-2 px-3 text-gray-900 rounded-lg   md:hover:text-amber-600 md:p-0 dark:text-white md:dark:hover:text-amber-400  dark:hover:text-white  transition-all duration-300 hover:scale-105">
-                        <i class="fas fa-envelope mr-2"></i>Contact
-                    </a>
-                </li>
-
-            </ul>
         </div>
     </div>
-</nav>
+</div>
 
