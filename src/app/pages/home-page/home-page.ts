@@ -7,13 +7,14 @@ import gsap from 'gsap';
 
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
+import { ScrollerBg } from "../scroller-bg/scroller-bg";
 
 gsap.registerPlugin(ScrollTrigger,ScrollSmoother);
 
 
 @Component({
   selector: 'app-home-page',
-  imports: [],
+  imports: [ScrollerBg],
   templateUrl: './home-page.html',
   styleUrl: './home-page.scss'
 })
@@ -24,11 +25,11 @@ export class HomePage implements AfterViewInit {
 
   animatedR = viewChildren<ElementRef>('animateR')
   animatedL = viewChild<ElementRef>('animateL')
-  wrapper = viewChild<ElementRef>('wrapper')
-  imgs = viewChild<ElementRef>('images')
+
 
 
   QuoteData:WritableSignal<any> = signal({})
+
 
   ngAfterViewInit(): void {
     this.flowbiteService.loadFlowbite((flowbite) => {
@@ -39,7 +40,6 @@ export class HomePage implements AfterViewInit {
     
     if(isPlatformBrowser(this.platform_id)){
       this.animateFadeInsec1()
-      this.velocityImgs()
     }
   }
 
@@ -89,23 +89,7 @@ export class HomePage implements AfterViewInit {
   }
 
 
-  private velocityImgs():void{
-    const WrapperNativ = this.wrapper()?.nativeElement
-    const ImgsNativ = this.imgs()?.nativeElement
-    let skewSetter = gsap.quickTo(ImgsNativ, "skewY"), // fast
-	  clamp = gsap.utils.clamp(-20, 20); // don't let the skew go beyond 20 degrees.
 
-    ScrollSmoother.create({
-      wrapper: WrapperNativ,
-      content: ImgsNativ,
-      smooth: 2,
-      speed: 3,
-      effects: true,
-      onUpdate: self => skewSetter(clamp(self.getVelocity() / -50)),
-      onStop: () => skewSetter(0)
-    });
-
-  }
 
 
   randomQuote(){
@@ -115,7 +99,7 @@ export class HomePage implements AfterViewInit {
         this.QuoteData.set(res.data)
       },
       error: (err)=>{
-        console.log('fgokdijtoid',err)
+        console.log('Error:',err)
       }
     })
   }
