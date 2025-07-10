@@ -19,67 +19,65 @@ export class ScrollerBg implements AfterViewInit{
   trigger = viewChild<ElementRef>('trigger')
 
   isActive:WritableSignal<boolean> = signal(false)
-  active:boolean = false
+
+  private smoother: any = null;
+
   private readonly platform_id = inject(PLATFORM_ID)
 
   ngAfterViewInit(): void {
     if(isPlatformBrowser(this.platform_id)){
-      this.velocityImgs()
+      this.ScrollSmootherBg()
+      setTimeout(()=>{
+        this.triggerInitial()
+        ScrollTrigger.refresh()
+      })
+      console.log(this.isActive())
+      }
     }
-
-    ScrollTrigger.refresh()
-  }
-  
-  private velocityImgs(): void {
-    const WrapperNativ = this.wrapper()?.nativeElement;
-    const ImgsNativ = this.imgs()?.nativeElement;
+    
+  private triggerInitial(): void {
     const trigger = this.trigger()?.nativeElement;
-
-    if (!WrapperNativ || !ImgsNativ || !trigger) {
-      console.warn('One or more elements are missing:', { WrapperNativ, ImgsNativ, trigger });
-      return;
-    }
-
-    let skewSetter = gsap.quickTo(ImgsNativ, "skewY");
-    let clamp = gsap.utils.clamp(-30, 30);
-
-    // Only create one ScrollSmoother instance
-
-
     ScrollTrigger.create({
       trigger: trigger,
+      start:'top center',
+      end: 'bottom center',
       onEnter: () => {
-        this.active = true
-        console.log(this.active)
+        this.isActive.set(true);
       },
       onLeave: () => {
-        this.active = false
-        console.log(this.active)
+        this.isActive.set(false);
       },
       onEnterBack: () => {
-        this.active = true
-        console.log(this.active)
+        this.isActive.set(true);
       },
       onLeaveBack: () => {
-        this.active = false
-        console.log(this.active)
-      }
+        this.isActive.set(false);
+      },
     });
-      ScrollSmoother.create({
+  }
+
+  private ScrollSmootherBg():void{
+    const WrapperNativ = this.wrapper()?.nativeElement;
+    const ImgsNativ = this.imgs()?.nativeElement;
+
+    let skewSetter = gsap.quickTo(ImgsNativ, "skewY");
+    let clamp = gsap.utils.clamp(-15, 15);
+
+      
+        ScrollSmoother.create({
         wrapper: WrapperNativ,
         content: ImgsNativ,
         smooth: 2,
         speed: 3,
         effects: true,
-      //skewSetter(clamp(self.getVelocity() / -50))
-          onUpdate: self =>  {if(this.isActive()) {
-            console.log(self.getVelocity())}
+          onUpdate: self =>  {
+              skewSetter(clamp(self.getVelocity() / -50));
           },
           onStop: () => {
-            if (this.isActive()) {
             skewSetter(0) 
-          }
         }
-      })
+      })  
+      
   }
+
 }
