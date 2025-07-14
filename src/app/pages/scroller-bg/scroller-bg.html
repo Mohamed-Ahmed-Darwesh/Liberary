@@ -1,23 +1,22 @@
 <div class="!relative container mx-auto h-[200vh]    !overflow-hidden">
     <div #wrapper class=" ">
 
-        <div  class=" !absolute overflow-hidden select-none">
+        <div  class=" !absolute overflow-hidden select-none  ">
                 <section #images class="select-none grid grid-cols-12 gap-12 even:object-cover odd:object-cover">
-                    <div class="h-[300vh] sm:h-[200vh] col-span-12"></div>
+                    <div class="h-[300vh] sm:h-[200vh] col-span-12 "></div>
                     @for (element of randomizedElements; track $index) {
                         <img 
-                        class="select-none"
-                        [class]="'col-span-' + element.colSpan + ' mt-'+ element.randNum "
+                        class="select-none "
+                        [class]="'col-span-' + element.colSpan + ' pt-10'+ element.randNum + ' px-10'+element.randNum2  "
                         [src]="element.src"
-                        [attr.data-speed] = element.speed
+                        [attr.data-speed] = "element.speed"
                         draggable="false"              
                         alt="">
                     }
-        
-            </section>
+                </section>
         </div>
-    </div>        <div>
-                                
+    </div>
+    <div>
 
 </div>
 

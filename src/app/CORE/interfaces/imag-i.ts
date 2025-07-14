@@ -3,4 +3,5 @@ export interface ImagI {
     speed: number;
     colSpan: number;
     randNum: number;
+    randNum2: number;
 }

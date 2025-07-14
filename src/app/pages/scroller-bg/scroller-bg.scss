@@ -1,0 +1,52 @@
+.col-span-1{
+    grid-column: span 1 / span 1;
+}
+.col-span-2{
+    grid-column: span 2 / span 2;
+}
+.col-span-6{
+    grid-column: span 6 / span 6;
+}
+.col-span-3{
+    grid-column: span 3 / span 3;
+}
+.col-span-5{
+    grid-column: span 5 / span 5;
+}
+
+.pt-101{
+    padding-top: 15px;
+}
+.pt-102{
+    padding-top: 30px;
+}
+.pt-103{
+    padding-top: 45px;
+}
+.pt-104{
+    padding-top: 60px;
+}
+.pt-105{
+    padding-top: 75px;
+}
+
+.px-101{
+    padding-left: 9px;
+    padding-right: 6px;
+}
+.px-102{
+    padding-left: 18px;
+    padding-right: 12px;
+}
+.px-103{
+    padding-left: 29px;
+    padding-right: 16px;
+}
+.px-104{
+    padding-left: 40px;
+    padding-right: 20px;
+}
+.px-105{
+    padding-left: 45px;
+    padding-right: 30px;
+}

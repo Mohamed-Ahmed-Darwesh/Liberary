@@ -37,12 +37,11 @@ export class ScrollerBg implements AfterViewInit {
     '/images/2-bg(compressed)/9781496759702.png',
     '/images/2-bg(compressed)/9781496747754.png',
     '/images/2-bg(compressed)/9780735221109.png',
-    ''
   ];
 
   // Available column/row spans
-  private readonly colSpans = [ 2,4,6,4];
-  private readonly randomNum = [1, 2,3,4,5]
+  private readonly colSpans = [ 2,4,3,4,2,3,3];
+  private readonly randomNum = [1,2,3,4,5]
   randomizedElements: ImagI[] = [];
 
   private readonly platform_id = inject(PLATFORM_ID);
@@ -50,20 +49,25 @@ export class ScrollerBg implements AfterViewInit {
 
   private generateRandomizedElements(): void {
     
-    const numElements = Math.floor(Math.random() * 11) + 50; // 50-60 elements
+    const numElements = 30; // 50-60 elements
     
     for (let i = 0; i < numElements; i++) {
-      const speed = Math.random() * 1.2 + 0.4;
+      const speed = Math.random() * 1.1 + 0.5;
       
       const colSpan = this.colSpans[Math.floor(Math.random() * this.colSpans.length)];
-      const randNum = this.randomNum[Math.floor(Math.random()*this.randomNum.length)]
+      let randNum = this.randomNum[Math.floor(Math.random()*this.randomNum.length)]
+      let randNum2 = this.randomNum[Math.floor(Math.random()*this.randomNum.length)]
       const src = this.imageSources[Math.floor(Math.random() * this.imageSources.length)];
-      
+      if(colSpan == 2){
+        randNum = 1
+        randNum2 = 1
+      }
       this.randomizedElements.push({
         src,
         speed,
         colSpan,
-        randNum
+        randNum,
+        randNum2
       });
     }
   }
@@ -71,8 +75,8 @@ export class ScrollerBg implements AfterViewInit {
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platform_id)) {
       this.generateRandomizedElements();
-      this.ScrollSmootherBg();
-      setTimeout(() => {
+      Promise.resolve().then(() => {
+        this.ScrollSmootherBg();
         ScrollTrigger.refresh();
       });
     }
@@ -86,6 +90,7 @@ export class ScrollerBg implements AfterViewInit {
 
     let skewSetter = gsap.quickTo(ImgsNativ, "skewY");
     let clamp = gsap.utils.clamp(-15, 15);
+    
 
     ScrollSmoother.create({
       wrapper: WrapperNativ,
@@ -99,6 +104,19 @@ export class ScrollerBg implements AfterViewInit {
       onStop: () => {
         skewSetter(0);
       }
+    });
+
+    gsap.utils.toArray("img[data-speed]").forEach((img: any) => {
+      const speed = parseFloat(img.getAttribute("data-speed")) || 1;
+    
+      gsap.to(img, {
+        y: () => -(window.innerHeight * speed),
+        ease: "none",
+        scrollTrigger: {
+          trigger: img,
+          scrub: true
+        }
+      });
     });
   }
 }
