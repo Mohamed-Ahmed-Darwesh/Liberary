@@ -52,7 +52,7 @@ export class ScrollerBg implements AfterViewInit {
     const numElements = 30; // 50-60 elements
     
     for (let i = 0; i < numElements; i++) {
-      const speed = Math.random() * 1.1 + 0.5;
+      const speed = Math.random() * 1.3 + 0.7;
       
       const colSpan = this.colSpans[Math.floor(Math.random() * this.colSpans.length)];
       let randNum = this.randomNum[Math.floor(Math.random()*this.randomNum.length)]
@@ -106,17 +106,5 @@ export class ScrollerBg implements AfterViewInit {
       }
     });
 
-    gsap.utils.toArray("img[data-speed]").forEach((img: any) => {
-      const speed = parseFloat(img.getAttribute("data-speed")) || 1;
-    
-      gsap.to(img, {
-        y: () => -(window.innerHeight * speed),
-        ease: "none",
-        scrollTrigger: {
-          trigger: img,
-          scrub: true
-        }
-      });
-    });
   }
 }
