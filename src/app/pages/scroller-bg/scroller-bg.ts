@@ -19,9 +19,7 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 export class ScrollerBg implements AfterViewInit {
   wrapper = viewChild<ElementRef>('wrapper');
   imgs = viewChild<ElementRef>('images');
-  trigger = viewChild<ElementRef>('trigger');
-  
-  // Available image sources
+
   private readonly imageSources = [
     '/images/2-bg(compressed)/9780143123231.png',
     '/images/2-bg(compressed)/9780525564805.png',
@@ -40,7 +38,7 @@ export class ScrollerBg implements AfterViewInit {
   ];
 
   // Available column/row spans
-  private readonly colSpans = [ 2,4,3,4,2,3,3];
+  private readonly colSpans = [ 2,4,3,2,3,3];
   private readonly randomNum = [1,2,3,4,5]
   randomizedElements: ImagI[] = [];
 
@@ -49,7 +47,7 @@ export class ScrollerBg implements AfterViewInit {
 
   private generateRandomizedElements(): void {
     
-    const numElements = 30; // 50-60 elements
+    const numElements = 60; // 50-60 elements
     
     for (let i = 0; i < numElements; i++) {
       const speed = Math.random() * 1.3 + 0.7;
@@ -81,7 +79,8 @@ export class ScrollerBg implements AfterViewInit {
       });
     }
   }
-    
+
+
 
 
   private ScrollSmootherBg(): void {
@@ -89,9 +88,8 @@ export class ScrollerBg implements AfterViewInit {
     const ImgsNativ = this.imgs()?.nativeElement;
 
     let skewSetter = gsap.quickTo(ImgsNativ, "skewY");
-    let clamp = gsap.utils.clamp(-15, 15);
+    let clamp = gsap.utils.clamp(-20, 20);
     
-
     ScrollSmoother.create({
       wrapper: WrapperNativ,
       content: ImgsNativ,

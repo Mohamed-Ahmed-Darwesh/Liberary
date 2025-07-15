@@ -50,3 +50,18 @@
     padding-left: 45px;
     padding-right: 30px;
 }
+
+
+
+
+.bg-scroller{
+    background-image: linear-gradient(rgba(0,0,0,.5),rgba(0, 0, 0, 0.8)),url(/images/bg2.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.bg-grad{
+    mask-image: linear-gradient(rgb(255, 0, 0), rgba(68, 0, 255));
+    mask-repeat: no-repeat;
+    mask-size: cover;
+}

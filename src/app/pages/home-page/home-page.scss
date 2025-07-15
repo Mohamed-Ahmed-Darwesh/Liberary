@@ -3,14 +3,13 @@
     background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    min-height: 100vh;
     width:100% ;
     position: relative;
     will-change: transform;
 }
 
 .bg-grad{
-    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,.3));
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
     mask-image: linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,.4));
     -webkit-mask-size: 100% 100%;
     mask-size: 100% 100%;
