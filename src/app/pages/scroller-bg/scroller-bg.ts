@@ -19,7 +19,8 @@ gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 export class ScrollerBg implements AfterViewInit {
   wrapper = viewChild<ElementRef>('wrapper');
   imgs = viewChild<ElementRef>('images');
-
+  pinned = viewChild<ElementRef>('pinned')
+  trigger = viewChild<ElementRef>('trigger')
   private readonly imageSources = [
     '/images/2-bg(compressed)/9780143123231.png',
     '/images/2-bg(compressed)/9780525564805.png',
@@ -44,6 +45,19 @@ export class ScrollerBg implements AfterViewInit {
 
   private readonly platform_id = inject(PLATFORM_ID);
 
+
+
+
+  ngAfterViewInit(): void {
+    if (isPlatformBrowser(this.platform_id)) {
+      this.generateRandomizedElements();
+      Promise.resolve().then(() => {
+        this.triggerEffect()
+        this.ScrollSmootherBg();
+        ScrollTrigger.refresh();
+      });
+    }
+  }
 
   private generateRandomizedElements(): void {
     
@@ -70,17 +84,17 @@ export class ScrollerBg implements AfterViewInit {
     }
   }
 
-  ngAfterViewInit(): void {
-    if (isPlatformBrowser(this.platform_id)) {
-      this.generateRandomizedElements();
-      Promise.resolve().then(() => {
-        this.ScrollSmootherBg();
-        ScrollTrigger.refresh();
-      });
-    }
+  private triggerEffect():void{
+    const pinned = this.pinned()?.nativeElement;
+    const trigger = this.trigger()?.nativeElement;
+    ScrollTrigger.create({
+      trigger: trigger,
+      start:'bottom center',
+      end:'+=1600',
+      pin: pinned
+
+    })
   }
-
-
 
 
   private ScrollSmootherBg(): void {
