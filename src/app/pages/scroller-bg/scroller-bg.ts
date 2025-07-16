@@ -50,9 +50,12 @@ export class ScrollerBg implements AfterViewInit {
 
   ngAfterViewInit(): void {
     if (isPlatformBrowser(this.platform_id)) {
+      ScrollTrigger.normalizeScroll();
+      ScrollSmoother
+      window.scrollTo(0, 0); // <-- Force scroll to top
       this.generateRandomizedElements();
       Promise.resolve().then(() => {
-        this.triggerEffect()
+        this.triggerEffect();
         this.ScrollSmootherBg();
         ScrollTrigger.refresh();
       });
@@ -84,16 +87,36 @@ export class ScrollerBg implements AfterViewInit {
     }
   }
 
-  private triggerEffect():void{
+  private triggerEffect(): void {
     const pinned = this.pinned()?.nativeElement;
     const trigger = this.trigger()?.nativeElement;
-    ScrollTrigger.create({
-      trigger: trigger,
-      start:'bottom center',
-      end:'+=1600',
-      pin: pinned
 
-    })
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: trigger,
+        start: 'bottom top',
+        end: '+=4200',             
+        scrub: true,
+        markers: true,
+        invalidateOnRefresh: true
+      }
+    });
+
+    tl.fromTo(
+      pinned,
+      { x: -300, opacity: 0 },
+      { x: 0, opacity: 1, ease: "power2.out", duration: 0.25 }
+    );
+
+    tl.to(
+      pinned,
+      { x: 0, opacity: 1, ease: "none", duration: 0.5 }
+    )
+
+    tl.to(
+      pinned,
+      { x: -300, opacity: 0, ease: "power2.in", duration: 0.25 }
+    );
   }
 
 
@@ -110,6 +133,7 @@ export class ScrollerBg implements AfterViewInit {
       smooth: 2,
       speed: 3,
       effects: true,
+      smoothTouch: 0.5,
       onUpdate: self => {
         skewSetter(clamp(self.getVelocity() / -50));
       },
@@ -117,6 +141,7 @@ export class ScrollerBg implements AfterViewInit {
         skewSetter(0);
       }
     });
+
 
   }
 }

@@ -1,11 +1,11 @@
-<div class="!relative   h-[200vh]   bg-scroller !overflow-hidden ">  
+<div class="!relative   h-[200vh]   bg-scroller !overflow-clip " #trigger>  
     <div #wrapper class="container mx-auto z-10 ">
-        <div  class=" !absolute overflow-hidden select-none  ">
+        <div class=" !absolute overflow-hidden select-none  ">
                 <section #images class="select-none grid grid-cols-12 gap-12 even:object-cover odd:object-cover">
                     <div class="h-[300vh] sm:h-[200vh] col-span-12 "></div>
                     @for (element of randomizedElements; track $index) {
                         <img 
-                        class="select-none brightness-[0.5]"
+                        class="select-none brightness-[0.4]"
                         [class]="'col-span-' + element.colSpan + ' pt-10'+ element.randNum + ' px-10'+element.randNum2  "
                         [src]="element.src"
                         [attr.data-speed] = "element.speed"
@@ -14,9 +14,9 @@
                     }
                 </section>
         </div>
-        <div class="grid grid-cols-3 grid-rows-3 items-end h-[100vh]" #pinned>
-            <div class="col-span-2 row-span-2 flex flex-col gap-8">
-                <p class="text-7xl" #trigger>
+        <div class="grid grid-cols-5 ms-12 grid-rows-5 items-end h-[100vh]" #pinned>
+            <div class="col-span-4 row-span-3 flex flex-col gap-8" >
+                <p class="text-7xl" >
                     Want to browse between differant book genres?
                 </p>
                 <p class="text-5xl">
@@ -28,3 +28,4 @@
         </div>
     </div> 
 </div>
+
