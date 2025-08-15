@@ -14,16 +14,32 @@
                     }
                 </section>
         </div>
-        <div class="grid grid-cols-5 ms-12 grid-rows-5 items-end h-[100vh]" #pinned>
-            <div class="col-span-4 row-span-3 flex flex-col gap-8" >
+        <div class="grid grid-cols-3 ms-12 grid-rows-5 items-end h-[100vh]" #pinned>
+            <div class="col-span-2 row-span-3 flex flex-col gap-8" >
                 <p class="text-7xl" >
                     Want to browse between differant book genres?
                 </p>
-                <p class="text-5xl">
-                    wether it's <span>typwiritter effect</span>
-                </p>
+                <div class="text-5xl flex flex-row">
+                    wether it's 
+                    <div class="ms-5 ">
+                        <p class="absolute" #firstCat>one</p>
+                        <p class="absolute" #otherCats>two</p>
+                        <p class="absolute" #otherCats>three</p>
+                    </div>
+                </div>
             </div>
 
+            <div #scrollerImg class="self-center mx-auto w-[70%] h-[75%] mt-12 row-span-5 grid-cols-1">
+                <img class="rounded-t-2xl w-full h-[75%]  object-cover " src="/images/book.jpeg" alt="" />
+                <div class="px-5 py-2 bg-grad1 bg-black ">
+                    <h5 class="mb-2 text-2xl font-bold text-[#92400e]  capitalize">
+                        meditations
+                    </h5>
+                    <p class="mb-3 font-normal line-clamp-2">
+                        Meditations is a Stoic guide to self-discipline, resilience, and inner peace.
+                    </p>
+                </div>
+            </div>
 
         </div>
     </div> 

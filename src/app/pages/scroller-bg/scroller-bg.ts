@@ -1,10 +1,11 @@
-import { AfterViewInit, Component, ElementRef, inject, PLATFORM_ID, signal, viewChild, WritableSignal } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, inject, PLATFORM_ID, signal, viewChild, viewChildren, WritableSignal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { isPlatformBrowser } from '@angular/common';
 import gsap from 'gsap';
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { ImagI } from '../../CORE/interfaces/imag-i';
+import { map } from 'rxjs';
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -21,6 +22,10 @@ export class ScrollerBg implements AfterViewInit {
   imgs = viewChild<ElementRef>('images');
   pinned = viewChild<ElementRef>('pinned')
   trigger = viewChild<ElementRef>('trigger')
+  scrollerImg = viewChild<ElementRef>('scrollerImg')
+  firstCat = viewChild<ElementRef>('firstCat')
+  otherCats = viewChildren<ElementRef>('otherCats')
+
   private readonly imageSources = [
     '/images/2-bg(compressed)/9780143123231.png',
     '/images/2-bg(compressed)/9780525564805.png',
@@ -52,12 +57,13 @@ export class ScrollerBg implements AfterViewInit {
     if (isPlatformBrowser(this.platform_id)) {
       ScrollTrigger.normalizeScroll();
       ScrollSmoother
-      window.scrollTo(0, 0); // <-- Force scroll to top
+
       this.generateRandomizedElements();
       Promise.resolve().then(() => {
         this.triggerEffect();
         this.ScrollSmootherBg();
         ScrollTrigger.refresh();
+        window.scrollTo(0, 0);
       });
     }
   }
@@ -90,7 +96,9 @@ export class ScrollerBg implements AfterViewInit {
   private triggerEffect(): void {
     const pinned = this.pinned()?.nativeElement;
     const trigger = this.trigger()?.nativeElement;
-
+    const scrollerImg = this.scrollerImg()?.nativeElement;
+    const firstCat = this.firstCat()?.nativeElement
+    const otherCats = this.otherCats().map(ref => ref?.nativeElement)
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: trigger,
@@ -102,24 +110,83 @@ export class ScrollerBg implements AfterViewInit {
       }
     });
 
+
+    tl.set(
+      scrollerImg,
+      { xPercent: 90, opacity: 0 },
+    )
+    tl.set(
+      otherCats,
+      {opacity:0,yPercent:100}
+    )
+
+
+
     tl.fromTo(
       pinned,
-      { x: -300, opacity: 0 },
-      { x: 0, opacity: 1, ease: "power2.out", duration: 0.25 }
+      { xPercent:-40, opacity: 0 },
+      { xPercent: 0, opacity: 1, ease: "power2.out", duration: 0.18}
     );
 
     tl.to(
-      pinned,
-      { x: 0, opacity: 1, ease: "none", duration: 0.5 }
+      scrollerImg,
+      {xPercent : 0 ,opacity:1 ,ease:"power1.out",duration:0.15},
+      "+0.065"
+    )
+    tl.to(
+      firstCat,
+      {
+        yPercent:-70,
+        opacity:0,
+        ease:"power2.out",
+        duration:0.08
+      },
+      "<+0.15"
+    )
+    tl.to(
+      otherCats,
+      {
+        opacity:1,
+        yPercent:0,
+        ease:"power2.out",
+        duration:0.08,
+        stagger: 0.05
+      },
+      "<+0.05"
     )
 
     tl.to(
       pinned,
-      { x: -300, opacity: 0, ease: "power2.in", duration: 0.25 }
+      { x: 0, opacity: 1, ease: "none", duration: 0.1 }
+    )
+
+    tl.to(
+      pinned,
+      { x: -300, opacity: 0, ease: "power2.in", duration: 0.1 }
     );
   }
 
+//=================================================================================
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//==================================================================================
   private ScrollSmootherBg(): void {
     const WrapperNativ = this.wrapper()?.nativeElement;
     const ImgsNativ = this.imgs()?.nativeElement;

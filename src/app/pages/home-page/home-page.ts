@@ -50,12 +50,11 @@ export class HomePage implements AfterViewInit {
   }
   
   private animateFromRightsec1(): void {
-    const animateList = this.animatedR();
     const isMobile = window.innerWidth < 640
     const xAxis =  isMobile ? -150 : -200
     const stagger = isMobile ? .4:.2
     const dur = isMobile ? 1: 2
-    const elements = animateList.map(ref => ref.nativeElement);
+    const elements = this.animatedR().map(ref => ref.nativeElement);
   
       gsap.set(elements, {
         x: xAxis,
