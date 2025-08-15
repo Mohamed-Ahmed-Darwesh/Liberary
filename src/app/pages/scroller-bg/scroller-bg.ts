@@ -155,6 +155,78 @@ export class ScrollerBg implements AfterViewInit {
       "<+0.05"
     )
 
+    private triggerEffect(): void {
+      const pinned = this.pinned()?.nativeElement;
+      const trigger = this.trigger()?.nativeElement;
+      const scrollerImg = this.scrollerImg()?.nativeElement;
+      const firstCat = this.firstCat()?.nativeElement
+      const otherCats = this.otherCats().map(ref => ref?.nativeElement)
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: trigger,
+          start: 'bottom top',
+          end: '+=4200',             
+          scrub: true,
+          markers: true,
+          invalidateOnRefresh: true
+        }
+      });
+  
+  
+      tl.set(
+        scrollerImg,
+        { xPercent: 90, opacity: 0 },
+      )
+      tl.set(
+        otherCats,
+        {opacity:0,yPercent:100}
+      )
+  
+  
+  
+      tl.fromTo(
+        pinned,
+        { xPercent:-40, opacity: 0 },
+        { xPercent: 0, opacity: 1, ease: "power2.out", duration: 0.18}
+      );
+  
+      tl.to(
+        scrollerImg,
+        {xPercent : 0 ,opacity:1 ,ease:"power1.out",duration:0.15},
+        "+0.065"
+      )
+      tl.to(
+        firstCat,
+        {
+          yPercent:-70,
+          opacity:0,
+          ease:"power2.out",
+          duration:0.08
+        },
+        "<+0.15"
+      )
+      tl.to(
+        otherCats,
+        {
+          opacity:1,
+          yPercent:0,
+          ease:"power2.out",
+          duration:0.08
+        },
+        "<+0.05"
+      )
+  
+    //   tl.to(
+    //     pinned,
+    //     { x: 0, opacity: 1, ease: "none", duration: 0.1 }
+    //   )
+  
+    //   tl.to(
+    //     pinned,
+    //     { x: -300, opacity: 0, ease: "power2.in", duration: 0.1 }
+    //   );
+    // }
+  
     tl.to(
       pinned,
       { x: 0, opacity: 1, ease: "none", duration: 0.1 }
