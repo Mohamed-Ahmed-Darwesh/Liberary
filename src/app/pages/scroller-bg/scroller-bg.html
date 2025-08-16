@@ -22,15 +22,15 @@
                 <div class="text-5xl flex flex-row">
                     wether it's 
                     <div class="ms-5 ">
-                        <p class="absolute" #firstCat>one</p>
-                        <p class="absolute" #otherCats>two</p>
-                        <p class="absolute" #otherCats>three</p>
-                        <p class="absolute" #otherCats>four</p>
+                        <p class="absolute uppercase bg-grad1" #firstCat>Self Improvement</p>
+                        @for (Cat of Catigories; track $index) {
+                            <p class="absolute uppercase bg-grad1 px-4 py-2 bg-dark" #otherCats>{{Cat}}</p>
+                        }
                     </div>
                 </div>
             </div>
 
-            <div class="self-center mx-auto w-[70%] h-[75%] mt-12 row-span-5 grid-cols-1 relative">
+            <div class="self-center mx-auto w-[70%] h-[75%]  mt-12 row-span-5 grid-cols-1 relative">
                 <div #scrollerImg class="absolute w-72">
                     <img class="rounded-t-2xl w-full h-100 object-cover " src="/images/book.jpeg" alt="" />
                     <div class="px-5 py-2 bg-black rounded-b-xl">
@@ -42,7 +42,8 @@
                         </p>
                     </div>
                 </div>
-                <div #scrollerImgs class="ms-[3%] absolute w-72">
+
+                <div #scrollerImgs class="ms-[3%] mt-[3%] absolute w-72">
                     <img class="rounded-t-2xl w-full h-100  object-cover " src="/images/2-bg(compressed)/9780143123231.png" alt="" />
                     <div class="px-5 py-2 bg-black rounded-b-xl ">
                         <h5 class="mb-2 text-2xl font-bold text-[#92400e]  capitalize">
@@ -53,7 +54,7 @@
                         </p>
                     </div>
                 </div>
-                <div #scrollerImgs class="ms-[6%] absolute w-72">
+                <div #scrollerImgs class="ms-[6%] mt-[6%]  absolute w-72">
                     <img class="rounded-t-2xl w-full h-100  object-cover " src="/images/2-bg(compressed)/9780525564805.png" alt="" />
                     <div class="px-5 py-2 bg-black rounded-b-xl ">
                         <h5 class="mb-2 text-2xl font-bold text-[#92400e]  capitalize">
@@ -64,7 +65,7 @@
                         </p>
                     </div>
                 </div>
-                <div #scrollerImgs class="ms-[9%] absolute w-72">
+                <div #scrollerImgs class="ms-[9%]   absolute w-72">
                     <img class="rounded-t-2xl w-full h-100  object-cover " src="/images/2-bg(compressed)/9780553418026.png" alt="" />
                     <div class="px-5 py-2 bg-black rounded-b-xl ">
                         <h5 class="mb-2 text-2xl font-bold text-[#92400e]  capitalize">

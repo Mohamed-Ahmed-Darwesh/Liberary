@@ -44,11 +44,21 @@ export class ScrollerBg implements AfterViewInit {
     '/images/2-bg(compressed)/9780735221109.png',
   ];
 
+  readonly Catigories = [
+    "adventure",
+    "mystery",
+    "fantasy",
+
+  ]
+  readonly AnimatedBooks = [
+  {img:"/images/2-bg(compressed)/9780735221109.png" , title:"meditation",desc:"lorem idaujosfhbriusjghari rgaujeirdhngierughei egrugaswiprhbeaisu"}
+]
+
+
   // Available column/row spans
   private readonly colSpans = [ 2,4,3,2,3,3];
   private readonly randomNum = [1,2,3,4,5]
   randomizedElements: ImagI[] = [];
-
   private readonly platform_id = inject(PLATFORM_ID);
 
 
@@ -156,6 +166,7 @@ export class ScrollerBg implements AfterViewInit {
     tl.to(
       scrollerImgs,
       {
+        rotate: (i)=> i==1 ? i % 2 == 1 ? i*2 : i*-2 : -3,
         xPercent:0,
         opacity:1,
         ease:"power2.out",
@@ -168,6 +179,7 @@ export class ScrollerBg implements AfterViewInit {
     tl.to(
       otherCats,
       {
+
         opacity:1,
         yPercent:0,
         ease:"power2.out",
