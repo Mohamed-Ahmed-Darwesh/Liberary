@@ -23,9 +23,10 @@ export class ScrollerBg implements AfterViewInit {
   pinned = viewChild<ElementRef>('pinned')
   trigger = viewChild<ElementRef>('trigger')
   scrollerImg = viewChild<ElementRef>('scrollerImg')
+  scrollerImgs = viewChildren<ElementRef>('scrollerImgs')
   firstCat = viewChild<ElementRef>('firstCat')
   otherCats = viewChildren<ElementRef>('otherCats')
-
+  
   private readonly imageSources = [
     '/images/2-bg(compressed)/9780143123231.png',
     '/images/2-bg(compressed)/9780525564805.png',
@@ -99,6 +100,7 @@ export class ScrollerBg implements AfterViewInit {
     const scrollerImg = this.scrollerImg()?.nativeElement;
     const firstCat = this.firstCat()?.nativeElement
     const otherCats = this.otherCats().map(ref => ref?.nativeElement)
+    const scrollerImgs  = this.scrollerImgs().map(ref => ref.nativeElement)
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: trigger,
@@ -116,6 +118,10 @@ export class ScrollerBg implements AfterViewInit {
       { xPercent: 90, opacity: 0 },
     )
     tl.set(
+      scrollerImgs,
+      { xPercent: 90 ,opacity:0 },
+    )
+    tl.set(
       otherCats,
       {opacity:0,yPercent:100}
     )
@@ -130,7 +136,11 @@ export class ScrollerBg implements AfterViewInit {
 
     tl.to(
       scrollerImg,
-      {xPercent : 0 ,opacity:1 ,ease:"power1.out",duration:0.15},
+      {xPercent : 0 ,
+        opacity:1 ,
+        ease:"power1.out",
+        duration:0.15
+      },
       "+0.065"
     )
     tl.to(
@@ -141,19 +151,32 @@ export class ScrollerBg implements AfterViewInit {
         ease:"power2.out",
         duration:0.1,
       },
-      "<+0.1"
+      "+=0.4"
     )
+    tl.to(
+      scrollerImgs,
+      {
+        xPercent:0,
+        opacity:1,
+        ease:"power2.out",
+        duration:0.15,
+        stagger:0.4
+      },
+      ">"
+    )
+
     tl.to(
       otherCats,
       {
         opacity:1,
         yPercent:0,
         ease:"power2.out",
-        duration:0.1,
-        stagger: 0.15
+        duration:0.15,
+        stagger:0.4
       },
-      "<+0.06"
+      "<"
     )
+
 
     tl.to(
       otherCats,
@@ -161,11 +184,13 @@ export class ScrollerBg implements AfterViewInit {
         yPercent:-70,
         opacity:0,
         ease:"power2.out",
-        duration:0.08,
-        stagger:0.1
+        duration:0.15,
+        stagger:0.4
       },
-      "<+0.1"
+      "<+0.35"
     )
+
+
     tl.to(
       pinned,
       { x: 0, opacity: 1, ease: "none", duration: 0.1 }
@@ -177,27 +202,6 @@ export class ScrollerBg implements AfterViewInit {
     );
   }
 
-//=================================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//==================================================================================
   private ScrollSmootherBg(): void {
     const WrapperNativ = this.wrapper()?.nativeElement;
     const ImgsNativ = this.imgs()?.nativeElement;
