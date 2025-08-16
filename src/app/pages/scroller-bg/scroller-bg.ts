@@ -26,7 +26,7 @@ export class ScrollerBg implements AfterViewInit {
   scrollerImgs = viewChildren<ElementRef>('scrollerImgs')
   firstCat = viewChild<ElementRef>('firstCat')
   otherCats = viewChildren<ElementRef>('otherCats')
-  
+
   private readonly imageSources = [
     '/images/2-bg(compressed)/9780143123231.png',
     '/images/2-bg(compressed)/9780525564805.png',
@@ -162,7 +162,7 @@ export class ScrollerBg implements AfterViewInit {
         duration:0.15,
         stagger:0.4
       },
-      ">"
+      "-=0.06"
     )
 
     tl.to(
@@ -179,7 +179,7 @@ export class ScrollerBg implements AfterViewInit {
 
 
     tl.to(
-      otherCats,
+      gsap.utils.toArray(otherCats).slice(0,-1),
             {
         yPercent:-70,
         opacity:0,
