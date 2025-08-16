@@ -69,12 +69,12 @@ export class ScrollerBg implements AfterViewInit {
   }
 
   private generateRandomizedElements(): void {
-    
+
     const numElements = 60; // 50-60 elements
-    
+
     for (let i = 0; i < numElements; i++) {
       const speed = Math.random() * 1.3 + 0.7;
-      
+
       const colSpan = this.colSpans[Math.floor(Math.random() * this.colSpans.length)];
       let randNum = this.randomNum[Math.floor(Math.random()*this.randomNum.length)]
       let randNum2 = this.randomNum[Math.floor(Math.random()*this.randomNum.length)]
@@ -103,7 +103,7 @@ export class ScrollerBg implements AfterViewInit {
       scrollTrigger: {
         trigger: trigger,
         start: 'bottom top',
-        end: '+=4200',             
+        end: '+=4200',
         scrub: true,
         markers: true,
         invalidateOnRefresh: true
@@ -139,9 +139,9 @@ export class ScrollerBg implements AfterViewInit {
         yPercent:-70,
         opacity:0,
         ease:"power2.out",
-        duration:0.08
+        duration:0.1,
       },
-      "<+0.15"
+      "<+0.1"
     )
     tl.to(
       otherCats,
@@ -149,12 +149,23 @@ export class ScrollerBg implements AfterViewInit {
         opacity:1,
         yPercent:0,
         ease:"power2.out",
-        duration:0.08,
-        stagger: 0.05
+        duration:0.1,
+        stagger: 0.15
       },
-      "<+0.05"
+      "<+0.06"
     )
 
+    tl.to(
+      otherCats,
+            {
+        yPercent:-70,
+        opacity:0,
+        ease:"power2.out",
+        duration:0.08,
+        stagger:0.1
+      },
+      "<+0.1"
+    )
     tl.to(
       pinned,
       { x: 0, opacity: 1, ease: "none", duration: 0.1 }
@@ -193,7 +204,7 @@ export class ScrollerBg implements AfterViewInit {
 
     let skewSetter = gsap.quickTo(ImgsNativ, "skewY");
     let clamp = gsap.utils.clamp(-20, 20);
-    
+
     ScrollSmoother.create({
       wrapper: WrapperNativ,
       content: ImgsNativ,
