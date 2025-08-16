@@ -47,11 +47,12 @@ export class ScrollerBg implements AfterViewInit {
   readonly Catigories = [
     "adventure",
     "mystery",
-    "fantasy",
-
+    "horror",
   ]
   readonly AnimatedBooks = [
-  {img:"/images/2-bg(compressed)/9780735221109.png" , title:"meditation",desc:"lorem idaujosfhbriusjghari rgaujeirdhngierughei egrugaswiprhbeaisu"}
+  {img:"/images/2-bg(compressed)/9780593874325.png" , title:"the bewitching",desc:"Back then, when I was a young woman, there were still witches”: That was how Nana Alba always began the stories she told her great-granddaughter Minerva—stories that have stayed with Minerva all her life."},
+  {img:"/images/2-bg(compressed)/9781496759702.png" , title:"victim six",desc:"The bodies are found in towns and cities around Puget Sound. The young women who are the victims had nothing in common"},
+  {img:"/images/2-bg(compressed)/9780143123231.png" , title:"the silent wife",desc:"A young woman is brutally attacked and left for dead. The police investigate but the trail goes cold."}
 ]
 
 

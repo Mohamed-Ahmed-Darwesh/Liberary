@@ -1,15 +1,15 @@
-<div class="!relative   h-[200vh]   bg-scroller !overflow-clip " #trigger>  
+<div class="!relative   h-[200vh]   bg-scroller !overflow-clip " #trigger>
     <div #wrapper class="container mx-auto z-10 ">
         <div class=" !absolute overflow-hidden select-none  ">
                 <section #images class="select-none grid grid-cols-12 gap-12 even:object-cover odd:object-cover">
                     <div class="h-[300vh] sm:h-[200vh] col-span-12 "></div>
                     @for (element of randomizedElements; track $index) {
-                        <img 
+                        <img
                         class="select-none brightness-[0.4]"
                         [class]="'col-span-' + element.colSpan + ' pt-10'+ element.randNum + ' px-10'+element.randNum2  "
                         [src]="element.src"
                         [attr.data-speed] = "element.speed"
-                        draggable="false"              
+                        draggable="false"
                         alt="">
                     }
                 </section>
@@ -19,12 +19,12 @@
                 <p class="text-7xl" >
                     Want to browse between differant book genres?
                 </p>
-                <div class="text-5xl flex flex-row">
-                    wether it's 
-                    <div class="ms-5 ">
-                        <p class="absolute uppercase bg-grad1" #firstCat>Self Improvement</p>
+                <div class="text-5xl flex start flex-row">
+                    <span>wether it's</span>
+                    <div class="ms-5 flex felx-col items-center">
+                        <p class="absolute text-[#92400e] uppercase bg-grad1 px-5 py-2.5 rounded-xl bg-black" #firstCat>philosiphy</p>
                         @for (Cat of Catigories; track $index) {
-                            <p class="absolute uppercase bg-grad1 px-4 py-2 bg-dark" #otherCats>{{Cat}}</p>
+                            <p class="absolute text-[#92400e] uppercase bg-grad1 px-5 py-2.5 rounded-xl bg-black" #otherCats>{{Cat}}</p>
                         }
                     </div>
                 </div>
@@ -32,7 +32,7 @@
 
             <div class="self-center mx-auto w-[70%] h-[75%]  mt-12 row-span-5 grid-cols-1 relative">
                 <div #scrollerImg class="absolute w-72">
-                    <img class="rounded-t-2xl w-full h-100 object-cover " src="/images/book.jpeg" alt="" />
+                    <img class="rounded-t-2xl w-full h-100 object-cover " src="/images/2-bg(compressed)/scrollerPhylosiphy.jpeg" alt="" />
                     <div class="px-5 py-2 bg-black rounded-b-xl">
                         <h5 class="mb-2 text-2xl font-bold text-[#92400e]  capitalize">
                             meditations
@@ -79,6 +79,6 @@
             </div>
 
         </div>
-    </div> 
+    </div>
 </div>
 
