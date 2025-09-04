@@ -28,20 +28,20 @@ export class ScrollerBg implements AfterViewInit {
   otherCats = viewChildren<ElementRef>('otherCats')
 
   private readonly imageSources = [
-    '/images/2-bg(compressed)/9780143123231.png',
-    '/images/2-bg(compressed)/9780525564805.png',
-    '/images/2-bg(compressed)/9780553418026.png',
-    '/images/2-bg(compressed)/9780593418918.png',
-    '/images/2-bg(compressed)/9780593492932.png',
-    '/images/2-bg(compressed)/9780593717493.png',
-    '/images/2-bg(compressed)/9780593873922.png',
-    '/images/2-bg(compressed)/9780593874325.png',
-    '/images/2-bg(compressed)/9780676973228.png',
-    '/images/2-bg(compressed)/9780593977057.png',
-    '/images/2-bg(compressed)/9781524746742.png',
-    '/images/2-bg(compressed)/9781496759702.png',
-    '/images/2-bg(compressed)/9781496747754.png',
-    '/images/2-bg(compressed)/9780735221109.png',
+    '/images/2-bg(compressed)/9780143123231.webp',
+    '/images/2-bg(compressed)/9780525564805.webp',
+    '/images/2-bg(compressed)/9780553418026.webp',
+    '/images/2-bg(compressed)/9780593418918.webp',
+    '/images/2-bg(compressed)/9780593492932.webp',
+    '/images/2-bg(compressed)/9780593717493.webp',
+    '/images/2-bg(compressed)/9780593873922.webp',
+    '/images/2-bg(compressed)/9780593874325.webp',
+    '/images/2-bg(compressed)/9780676973228.webp',
+    '/images/2-bg(compressed)/9780593977057.webp',
+    '/images/2-bg(compressed)/9781524746742.webp',
+    '/images/2-bg(compressed)/9781496759702.webp',
+    '/images/2-bg(compressed)/9781496747754.webp',
+    '/images/2-bg(compressed)/9780735221109.webp',
   ];
 
   readonly Catigories = [
@@ -50,9 +50,9 @@ export class ScrollerBg implements AfterViewInit {
     "horror",
   ]
   readonly AnimatedBooks = [
-  {img:"/images/2-bg(compressed)/9780593874325.png" , title:"the bewitching",desc:"Back then, when I was a young woman, there were still witches”: That was how Nana Alba always began the stories she told her great-granddaughter Minerva—stories that have stayed with Minerva all her life."},
-  {img:"/images/2-bg(compressed)/9781496759702.png" , title:"victim six",desc:"The bodies are found in towns and cities around Puget Sound. The young women who are the victims had nothing in common"},
-  {img:"/images/2-bg(compressed)/9780143123231.png" , title:"the silent wife",desc:"A young woman is brutally attacked and left for dead. The police investigate but the trail goes cold."}
+  {img:"/images/2-bg(compressed)/9780593874325.webp" , title:"the bewitching",desc:"Back then, when I was a young woman, there were still witches”: That was how Nana Alba always began the stories she told her great-granddaughter Minerva—stories that have stayed with Minerva all her life."},
+  {img:"/images/2-bg(compressed)/9781496759702.webp" , title:"victim six",desc:"The bodies are found in towns and cities around Puget Sound. The young women who are the victims had nothing in common"},
+  {img:"/images/2-bg(compressed)/9780143123231.webp" , title:"the silent wife",desc:"A young woman is brutally attacked and left for dead. The police investigate but the trail goes cold."}
 ]
 
 
@@ -115,8 +115,8 @@ export class ScrollerBg implements AfterViewInit {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: trigger,
-        start: 'bottom top',
-        end: '+=4200',
+        start: 'center top',
+        end: '+=' + (window.innerHeight*12),
         scrub: true,
         markers: true,
         invalidateOnRefresh: true
@@ -203,17 +203,74 @@ export class ScrollerBg implements AfterViewInit {
       "<+0.35"
     )
 
-
+      tl.to(
+    scrollerImgs,
+    {
+      rotate: 0,
+        ease:"power2.out",
+      duration:0.1,
+      stagger:-0.1
+    }
+  )
+  tl.to(
+    [scrollerImgs , scrollerImg],
+    {
+      yPercent:20,
+        ease:"power2.out",
+      duration:0.1,
+    }
+  )
     tl.to(
-      pinned,
-      { x: 0, opacity: 1, ease: "none", duration: 0.1 }
-    )
-
+    [scrollerImgs , scrollerImg],
+    {
+      yPercent:3,
+        ease:"power2.out",
+      duration:0.5,
+    }
+  )
     tl.to(
-      pinned,
-      { x: -300, opacity: 0, ease: "power2.in", duration: 0.1 }
-    );
-  }
+    [scrollerImgs , scrollerImg],
+    {
+      yPercent:20,
+        ease:"power2.out",
+      duration:0.1,
+    }
+  )
+    tl.to(
+    [scrollerImgs , scrollerImg],
+    {
+      yPercent:0,
+        ease:"power2.out",
+      duration:0.1,
+    }
+  )
+
+      tl.to(
+    [scrollerImg , scrollerImgs ],
+    {
+      xPercent:90,
+      opacity:0,
+      duration:0.175,
+      stagger:-0.04 ,
+      ease:"power2.out"
+    }
+  )
+  tl.to(
+    gsap.utils.toArray(otherCats).slice(otherCats.length-1,otherCats.length),
+    {
+      opacity:0,
+      duration:0.075,
+      ease:"power2.out",
+      scale:0.2
+    },
+    "<+0.12"
+  )
+  tl.to(
+    pinned,
+    {xPercent:-90,opacity:0,ease:"power2.out",duration:0.15},
+    ">+0.05"
+  )
+}
 
   private ScrollSmootherBg(): void {
     const WrapperNativ = this.wrapper()?.nativeElement;

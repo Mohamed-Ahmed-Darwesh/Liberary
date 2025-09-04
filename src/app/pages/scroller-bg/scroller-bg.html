@@ -1,4 +1,4 @@
-<div class="!relative   h-[200vh]   bg-scroller !overflow-clip " #trigger>
+<div class="!relative   h-[600vh]   bg-scroller !overflow-clip " #trigger>
     <div #wrapper class="container mx-auto z-10 ">
         <div class=" !absolute overflow-hidden select-none  ">
                 <section #images class="select-none grid grid-cols-12 gap-12 even:object-cover odd:object-cover">
@@ -31,51 +31,32 @@
             </div>
 
             <div class="self-center mx-auto w-[70%] h-[75%]  mt-12 row-span-5 grid-cols-1 relative">
-                <div #scrollerImg class="absolute w-72">
-                    <img class="rounded-t-2xl w-full h-100 object-cover " src="/images/2-bg(compressed)/scrollerPhylosiphy.jpeg" alt="" />
+                              <div #scrollerImg class="absolute w-72">
+                    <img class="rounded-t-2xl w-full h-100 object-cover " src="/images/2-bg(compressed)/scrollerPhylosiphy.webp" alt="" />
                     <div class="px-5 py-2 bg-black rounded-b-xl">
-                        <h5 class="mb-2 text-2xl font-bold text-[#92400e]  capitalize">
-                            meditations
+                        <h5 class="mb-2 text-xl font-bold text-[#92400e]  capitalize">
+                            thus spoke zarathustra
                         </h5>
                         <p class="mb-3 font-normal line-clamp-2">
-                            Meditations is a Stoic guide to self-discipline, resilience, and inner peace.
+                            Introduces Zarathustra, who proclaims the death of God and calls for the rise of the Übermensch.
                         </p>
                     </div>
                 </div>
 
-                <div #scrollerImgs class="ms-[3%] mt-[3%] absolute w-72">
-                    <img class="rounded-t-2xl w-full h-100  object-cover " src="/images/2-bg(compressed)/9780143123231.png" alt="" />
+              @for (book of AnimatedBooks; track $index) {
+                <div #scrollerImgs class=" absolute w-72">
+                    <img class="rounded-t-2xl w-full h-100  object-cover " [src]="book.img" alt="" />
                     <div class="px-5 py-2 bg-black rounded-b-xl ">
                         <h5 class="mb-2 text-2xl font-bold text-[#92400e]  capitalize">
-                                    meditations
+                                    {{book.title}}
                         </h5>
                         <p class="mb-3 font-normal line-clamp-2">
-                                    Meditations is a Stoic guide to self-discipline, resilience, and inner peace.
+                                    {{book.desc}}
                         </p>
                     </div>
                 </div>
-                <div #scrollerImgs class="ms-[6%] mt-[6%]  absolute w-72">
-                    <img class="rounded-t-2xl w-full h-100  object-cover " src="/images/2-bg(compressed)/9780525564805.png" alt="" />
-                    <div class="px-5 py-2 bg-black rounded-b-xl ">
-                        <h5 class="mb-2 text-2xl font-bold text-[#92400e]  capitalize">
-                                    meditations
-                        </h5>
-                        <p class="mb-3 font-normal line-clamp-2">
-                                    Meditations is a Stoic guide to self-discipline, resilience, and inner peace.
-                        </p>
-                    </div>
-                </div>
-                <div #scrollerImgs class="ms-[9%]   absolute w-72">
-                    <img class="rounded-t-2xl w-full h-100  object-cover " src="/images/2-bg(compressed)/9780553418026.png" alt="" />
-                    <div class="px-5 py-2 bg-black rounded-b-xl ">
-                        <h5 class="mb-2 text-2xl font-bold text-[#92400e]  capitalize">
-                                    meditations
-                        </h5>
-                        <p class="mb-3 font-normal line-clamp-2">
-                                    Meditations is a Stoic guide to self-discipline, resilience, and inner peace.
-                        </p>
-                    </div>
-                </div>
+              }
+
             </div>
 
         </div>
