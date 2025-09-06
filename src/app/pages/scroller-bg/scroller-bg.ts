@@ -116,7 +116,7 @@ export class ScrollerBg implements AfterViewInit {
       scrollTrigger: {
         trigger: trigger,
         start: 'center top',
-        end: '+=' + (window.innerHeight*12),
+        end: '+=' + (window.innerHeight*10),
         scrub: true,
         markers: true,
         invalidateOnRefresh: true
@@ -167,7 +167,7 @@ export class ScrollerBg implements AfterViewInit {
     tl.to(
       scrollerImgs,
       {
-        rotate: (i)=> i==1 ? i % 2 == 1 ? i*2 : i*-2 : -3,
+        rotate: (i)=> i == 0 ? -3.5 : (i % 2 == 0 ? i*-3.5 : i*3.5) ,
         xPercent:0,
         opacity:1,
         ease:"power2.out",
@@ -207,10 +207,11 @@ export class ScrollerBg implements AfterViewInit {
     scrollerImgs,
     {
       rotate: 0,
-        ease:"power2.out",
+      ease:"power2.out",
       duration:0.1,
       stagger:-0.1
-    }
+    },
+    ">+0.5"
   )
   tl.to(
     [scrollerImgs , scrollerImg],
@@ -225,7 +226,7 @@ export class ScrollerBg implements AfterViewInit {
     {
       yPercent:3,
         ease:"power2.out",
-      duration:0.5,
+      duration:0.05,
     }
   )
     tl.to(
@@ -250,8 +251,8 @@ export class ScrollerBg implements AfterViewInit {
     {
       xPercent:90,
       opacity:0,
-      duration:0.175,
-      stagger:-0.04 ,
+      duration:0.17,
+      stagger:-0.03 ,
       ease:"power2.out"
     }
   )
@@ -263,11 +264,11 @@ export class ScrollerBg implements AfterViewInit {
       ease:"power2.out",
       scale:0.2
     },
-    "<+0.12"
+    "<+0.1"
   )
   tl.to(
     pinned,
-    {xPercent:-90,opacity:0,ease:"power2.out",duration:0.15},
+    {xPercent:-90,opacity:0,ease:"power2.out",duration:0.25},
     ">+0.05"
   )
 }
